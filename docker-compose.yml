@@ -1,0 +1,18 @@
+version: "3.9"
+
+services:
+  db:
+    image: postgis/postgis:16-3.4
+    restart: unless-stopped
+    shm_size: 256mb
+    environment:
+      POSTGRES_DB: realtydb
+      POSTGRES_USER: realty_user
+      POSTGRES_PASSWORD: dev_user_secret
+      PGDATA: /var/lib/postgreql/data/pgdata
+    ports:
+      - "5432:5432"
+    volumes:
+      - type: bind
+        source: ~/data/
+        target: /var/lib/postgreql/data
